@@ -25,18 +25,12 @@ export class AppMenu {
                 items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] }]
             },
             {
-                label: 'UI Components',
+                label: 'Workspace',
                 items: [
-                    { label: 'Table', icon: 'pi pi-fw pi-table', routerLink: ['/uikit/table'] },
-                    { label: 'List', icon: 'pi pi-fw pi-list', routerLink: ['/uikit/list'] },
-                    { label: 'Tree', icon: 'pi pi-fw pi-share-alt', routerLink: ['/uikit/tree'] },
-                    { label: 'Panel', icon: 'pi pi-fw pi-tablet', routerLink: ['/uikit/panel'] },
-                    { label: 'Menu', icon: 'pi pi-fw pi-bars', routerLink: ['/uikit/menu'] },
-                    { label: 'Message', icon: 'pi pi-fw pi-comment', routerLink: ['/uikit/message'] },
-                    { label: 'File', icon: 'pi pi-fw pi-file', routerLink: ['/uikit/file'] },
-                    { label: 'Chart', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/uikit/charts'] },
-                    { label: 'Timeline', icon: 'pi pi-fw pi-calendar', routerLink: ['/uikit/timeline'] },
-                    { label: 'Misc', icon: 'pi pi-fw pi-circle', routerLink: ['/uikit/misc'] }
+                    { label: 'Peoples', icon: 'pi pi-fw pi-user', routerLink: ['/uikit/table'] },
+                    { label: 'Products', icon: 'pi pi-fw pi-cart-minus', routerLink: ['/uikit/list'] },
+                    { label: 'Files', icon: 'pi pi-fw pi-file', routerLink: ['/uikit/tree'] },
+                    { label: 'Tasks', icon: 'pi pi-fw pi-check-circle', routerLink: ['/uikit/panel'] }
                 ]
             },
         ];

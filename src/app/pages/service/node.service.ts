@@ -33,13 +33,13 @@ export class NodeService {
             },
             {
                 key: '1',
-                label: 'Events',
+                label: 'Calendar Files',
                 data: 'Events Folder',
                 icon: 'pi pi-fw pi-calendar',
                 children: [
-                    { key: '1-0', label: 'Meeting', icon: 'pi pi-fw pi-calendar-plus', data: 'Meeting' },
-                    { key: '1-1', label: 'Product Launch', icon: 'pi pi-fw pi-calendar-plus', data: 'Product Launch' },
-                    { key: '1-2', label: 'Report Review', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review' }
+                    { key: '1-0', label: 'meeting schedule of January', icon: 'pi pi-fw pi-calendar-plus', data: 'meeting schedule' },
+                    { key: '1-1', label: 'project Launch', icon: 'pi pi-fw pi-calendar-plus', data: 'Project Launch' },
+                    { key: '1-2', label: 'Report Review Schedule', icon: 'pi pi-fw pi-calendar-plus', data: 'Report Review Schedule' }
                 ]
             },
             {

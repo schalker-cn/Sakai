@@ -45,12 +45,12 @@ interface expandedRows {
         IconFieldModule
     ],
     template: ` <div class="card">
-            <div class="font-semibold text-xl mb-4">Filtering</div>
+            <div class="font-semibold text-xl mb-4">Customers</div>
             <p-table
                 #dt1
                 [value]="customers1"
                 dataKey="id"
-                [rows]="10"
+                [rows]="8"
                 [loading]="loading"
                 [rowHover]="true"
                 [showGridlines]="true"
@@ -75,34 +75,6 @@ interface expandedRows {
                             <div class="flex justify-between items-center">
                                 Name
                                 <p-columnFilter type="text" field="name" display="menu" placeholder="Search by name"></p-columnFilter>
-                            </div>
-                        </th>
-                        <th style="min-width: 12rem">
-                            <div class="flex justify-between items-center">
-                                Country
-                                <p-columnFilter type="text" field="country.name" display="menu" placeholder="Search by country"></p-columnFilter>
-                            </div>
-                        </th>
-                        <th style="min-width: 14rem">
-                            <div class="flex justify-between items-center">
-                                Agent
-                                <p-columnFilter field="representative" matchMode="in" display="menu" [showMatchModes]="false" [showOperator]="false" [showAddButton]="false">
-                                    <ng-template #header>
-                                        <div class="px-3 pt-3 pb-0">
-                                            <span class="font-bold">Agent Picker</span>
-                                        </div>
-                                    </ng-template>
-                                    <ng-template #filter let-value let-filter="filterCallback">
-                                        <p-multiselect [ngModel]="value" [options]="representatives" placeholder="Any" (onChange)="filter($event.value)" optionLabel="name" styleClass="w-full">
-                                            <ng-template let-option #item>
-                                                <div class="flex items-center gap-2 w-44">
-                                                    <img [alt]="option.label" src="https://primefaces.org/cdn/primeng/images/demo/avatar/{{ option.image }}" width="32" />
-                                                    <span>{{ option.name }}</span>
-                                                </div>
-                                            </ng-template>
-                                        </p-multiselect>
-                                    </ng-template>
-                                </p-columnFilter>
                             </div>
                         </th>
                         <th style="min-width: 10rem">
@@ -145,30 +117,12 @@ interface expandedRows {
                                 </p-columnFilter>
                             </div>
                         </th>
-                        <th style="min-width: 8rem">
-                            <div class="flex justify-between items-center">
-                                Verified
-                                <p-columnFilter type="boolean" field="verified" display="menu"></p-columnFilter>
-                            </div>
-                        </th>
                     </tr>
                 </ng-template>
                 <ng-template #body let-customer>
                     <tr>
                         <td>
                             {{ customer.name }}
-                        </td>
-                        <td>
-                            <div class="flex items-center gap-2">
-                                <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + customer.country.code" width="30" />
-                                <span>{{ customer.country.name }}</span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex items-center gap-2">
-                                <img [alt]="customer.representative.name" src="https://primefaces.org/cdn/primeng/images/demo/avatar/{{ customer.representative.image }}" width="32" style="vertical-align: middle" />
-                                <span class="image-text">{{ customer.representative.name }}</span>
-                            </div>
                         </td>
                         <td>
                             {{ customer.date | date: 'MM/dd/yyyy' }}
@@ -181,9 +135,6 @@ interface expandedRows {
                         </td>
                         <td>
                             <p-progressbar [value]="customer.activity" [showValue]="false" [style]="{ height: '0.5rem' }" />
-                        </td>
-                        <td class="text-center">
-                            <p-tag [value]="customer.status.toLowerCase()" [severity]="getSeverity(customer.status.toLowerCase())" styleClass="dark:!bg-surface-900" />
                         </td>
                     </tr>
                 </ng-template>
@@ -201,7 +152,7 @@ interface expandedRows {
         </div>
 
         <div class="card">
-            <div class="font-semibold text-xl mb-4">Frozen Columns</div>
+            <div class="font-semibold text-xl mb-4">Colleagues</div>
             <p-togglebutton [(ngModel)]="balanceFrozen" [onIcon]="'pi pi-lock'" offIcon="pi pi-lock-open" [onLabel]="'Balance'" offLabel="Balance" />
 
             <p-table [value]="customers2" [scrollable]="true" scrollHeight="400px" styleClass="mt-4">
@@ -212,9 +163,6 @@ interface expandedRows {
                         <th style="min-width:200px">Country</th>
                         <th style="min-width:200px">Date</th>
                         <th style="min-width:200px">Company</th>
-                        <th style="min-width:200px">Status</th>
-                        <th style="min-width:200px">Activity</th>
-                        <th style="min-width:200px">Representative</th>
                         <th style="min-width:200px" alignFrozen="right" pFrozenColumn [frozen]="balanceFrozen" [ngClass]="{ 'font-bold': balanceFrozen }">Balance</th>
                     </tr>
                 </ng-template>
@@ -225,170 +173,8 @@ interface expandedRows {
                         <td>{{ customer.country.name }}</td>
                         <td>{{ customer.date }}</td>
                         <td>{{ customer.company }}</td>
-                        <td>{{ customer.status }}</td>
-                        <td>{{ customer.activity }}</td>
-                        <td>{{ customer.representative.name }}</td>
                         <td alignFrozen="right" pFrozenColumn [frozen]="balanceFrozen" [ngClass]="{ 'font-bold': balanceFrozen }">
                             {{ formatCurrency(customer.balance) }}
-                        </td>
-                    </tr>
-                </ng-template>
-            </p-table>
-        </div>
-
-        <div class="card">
-            <div class="font-semibold text-xl mb-4">Row Expansion</div>
-            <p-table [value]="products" dataKey="name" [expandedRowKeys]="expandedRows" responsiveLayout="scroll">
-                <ng-template #caption>
-                    <button pButton icon="pi pi-fw {{ isExpanded ? 'pi-minus' : 'pi-plus' }}" label="{{ isExpanded ? 'Collapse All' : 'Expand All' }}" (click)="expandAll()"></button>
-                    <div class="flex table-header"></div>
-                </ng-template>
-                <ng-template #header>
-                    <tr>
-                        <th style="width: 3rem"></th>
-                        <th pSortableColumn="name">
-                            Name
-                            <p-sortIcon field="name"></p-sortIcon>
-                        </th>
-                        <th>Image</th>
-                        <th pSortableColumn="price">
-                            Price
-                            <p-sortIcon field="price"></p-sortIcon>
-                        </th>
-                        <th pSortableColumn="category">
-                            Category
-                            <p-sortIcon field="category"></p-sortIcon>
-                        </th>
-                        <th pSortableColumn="rating">
-                            Reviews
-                            <p-sortIcon field="rating"></p-sortIcon>
-                        </th>
-                        <th pSortableColumn="inventoryStatus">
-                            Status
-                            <p-sortIcon field="inventoryStatus"></p-sortIcon>
-                        </th>
-                    </tr>
-                </ng-template>
-                <ng-template #body let-product let-expanded="expanded">
-                    <tr>
-                        <td>
-                            <button type="button" pButton pRipple [pRowToggler]="product" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
-                        </td>
-                        <td style="min-width: 12rem;">{{ product.name }}</td>
-                        <td><img [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product.image" [alt]="product.name" width="50" class="shadow-lg" /></td>
-                        <td style="min-width: 8rem;">{{ product.price | currency: 'USD' }}</td>
-                        <td style="min-width: 10rem;">{{ product.category }}</td>
-                        <td style="min-width: 10rem;">
-                            <p-rating [ngModel]="product.rating" [readonly]="true"></p-rating>
-                        </td>
-                        <td>
-                            <p-tag [value]="product.inventoryStatus.toLowerCase()" [severity]="getSeverity(product.inventoryStatus)" styleClass="dark:!bg-surface-900" />
-                        </td>
-                    </tr>
-                </ng-template>
-                <ng-template #rowexpansion let-product>
-                    <tr>
-                        <td colspan="7">
-                            <div class="p-3">
-                                <p-table [value]="product.orders" dataKey="id" responsiveLayout="scroll">
-                                    <ng-template #header>
-                                        <tr>
-                                            <th pSortableColumn="id">
-                                                Id
-                                                <p-sortIcon field="price"></p-sortIcon>
-                                            </th>
-                                            <th pSortableColumn="customer">
-                                                Customer
-                                                <p-sortIcon field="customer"></p-sortIcon>
-                                            </th>
-                                            <th pSortableColumn="date">
-                                                Date
-                                                <p-sortIcon field="date"></p-sortIcon>
-                                            </th>
-                                            <th pSortableColumn="amount">
-                                                Amount
-                                                <p-sortIcon field="amount"></p-sortIcon>
-                                            </th>
-                                            <th pSortableColumn="stats">
-                                                Status
-                                                <p-sortIcon field="status"></p-sortIcon>
-                                            </th>
-                                            <th style="width: 4rem"></th>
-                                        </tr>
-                                    </ng-template>
-                                    <ng-template #body let-order>
-                                        <tr>
-                                            <td>{{ order.id }}</td>
-                                            <td>{{ order.customer }}</td>
-                                            <td>{{ order.date }}</td>
-                                            <td>{{ order.amount | currency: 'USD' }}</td>
-                                            <td>
-                                                <span [class]="'order-badge order-' + order.status.toLowerCase()">{{ order.status }}</span>
-                                            </td>
-                                            <td>
-                                                <p-button type="button" icon="pi pi-search"></p-button>
-                                            </td>
-                                        </tr>
-                                    </ng-template>
-                                    <ng-template #emptymessage>
-                                        <tr>
-                                            <td colspan="6">There are no order for this product yet.</td>
-                                        </tr>
-                                    </ng-template>
-                                </p-table>
-                            </div>
-                        </td>
-                    </tr>
-                </ng-template>
-            </p-table>
-        </div>
-
-        <div class="card">
-            <div class="font-semibold text-xl mb-4">Grouping</div>
-            <p-table [value]="customers3" sortField="representative.name" sortMode="single" [scrollable]="true" scrollHeight="400px" rowGroupMode="subheader" groupRowsBy="representative.name" [tableStyle]="{ 'min-width': '60rem' }">
-                <ng-template #header>
-                    <tr>
-                        <th>Name</th>
-                        <th>Country</th>
-                        <th>Company</th>
-                        <th>Status</th>
-                        <th>Date</th>
-                    </tr>
-                </ng-template>
-                <ng-template #groupheader let-customer>
-                    <tr pRowGroupHeader>
-                        <td colspan="5">
-                            <div class="flex items-center gap-2">
-                                <img [alt]="customer.representative.name" src="https://primefaces.org/cdn/primeng/images/demo/avatar/{{ customer.representative.image }}" width="32" style="vertical-align: middle" />
-                                <span class="font-bold">{{ customer.representative.name }}</span>
-                            </div>
-                        </td>
-                    </tr>
-                </ng-template>
-                <ng-template #groupfooter let-customer>
-                    <tr>
-                        <td colspan="5" class="text-right font-bold pr-12">Total Customers: {{ calculateCustomerTotal(customer.representative.name) }}</td>
-                    </tr>
-                </ng-template>
-                <ng-template #body let-customer let-rowIndex="rowIndex">
-                    <tr>
-                        <td>
-                            {{ customer.name }}
-                        </td>
-                        <td>
-                            <div class="flex items-center gap-2">
-                                <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + customer.country.code" style="width: 20px" />
-                                <span>{{ customer.country.name }}</span>
-                            </div>
-                        </td>
-                        <td>
-                            {{ customer.company }}
-                        </td>
-                        <td>
-                            <p-tag [value]="customer.status" [severity]="getSeverity(customer.status)" />
-                        </td>
-                        <td>
-                            {{ customer.date }}
                         </td>
                     </tr>
                 </ng-template>
