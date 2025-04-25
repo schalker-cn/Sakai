@@ -1,0 +1,20 @@
+src/main.ts
+src/index.html
+src/app.config.ts
+src/app.routes.ts
+src/app.component.ts
+src/styles.scss
+src/tailwind.css
+src/app/pages/service/product.service.ts
+src/app/pages/service/customer.service.ts
+angular.json
+package.json
+tsconfig.json
+tailwind.config.js
+tsconfig.json
+tsconfig.app.json
+src/app/pages/uikit/uikit.routes.ts
+src/app/pages/uikit/tabledemo.ts
+all files in src/app/layout
+all files in src/assets/demo
+all files in src/assets/layout

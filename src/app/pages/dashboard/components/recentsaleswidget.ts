@@ -23,7 +23,7 @@ import { Product, ProductService } from '../../service/product.service';
             <ng-template #body let-product>
                 <tr>
                     <td style="width: 15%; min-width: 5rem;">
-                        <img src="https://primefaces.org/cdn/primevue/images/product/{{ product.image }}" class="shadow-lg" alt="{{ product.name }}" width="50" />
+                        <img src="/assets/placeholder.png" class="shadow-lg" alt="{{ product.name }}" width="50" />
                     </td>
                     <td style="width: 35%; min-width: 7rem;">{{ product.name }}</td>
                     <td style="width: 35%; min-width: 8rem;">{{ product.price | currency: 'USD' }}</td>
