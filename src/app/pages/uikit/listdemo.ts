@@ -15,7 +15,7 @@ import { Product, ProductService } from '../service/product.service';
     imports: [CommonModule, DataViewModule, FormsModule, SelectButtonModule, PickListModule, OrderListModule, TagModule, ButtonModule],
     template: ` <div class="flex flex-col">
         <div class="card">
-            <div class="font-semibold text-xl">Products Overview</div>
+            <div class="font-semibold text-xl">DataView</div>
             <p-dataview [value]="products" [layout]="layout">
                 <ng-template #header>
                     <div class="flex justify-end">
@@ -122,14 +122,8 @@ import { Product, ProductService } from '../service/product.service';
         <div class="flex flex-col lg:flex-row gap-20">
             <div class="lg:w-2/3">
                 <div class="card">
-                    <div class="font-semibold text-xl mb-4">Dispatch Location</div>
+                    <div class="font-semibold text-xl mb-4">PickList</div>
                     <p-pick-list [source]="sourceCities" [target]="targetCities" breakpoint="1400px">
-                        <ng-template pTemplate="sourceHeader">
-                            <div class="font-semibold text-surface-700 text-center py-2">in process</div>
-                        </ng-template>
-                        <ng-template pTemplate="targetHeader">
-                            <div class="font-semibold text-surface-700 text-center py-2">pending</div>
-                        </ng-template>
                         <ng-template #item let-item>
                             {{ item.name }}
                         </ng-template>
@@ -139,11 +133,8 @@ import { Product, ProductService } from '../service/product.service';
 
             <div class="lg:w-1/3">
                 <div class="card">
-                    <div class="font-semibold text-xl mb-4">Delivery Destination</div>
+                    <div class="font-semibold text-xl mb-4">OrderList</div>
                     <p-orderlist [value]="orderCities" dataKey="id" breakpoint="575px">
-                        <ng-template pTemplate="header">
-                            <div class="font-semibold text-surface-700 text-center py-2">Priority</div>
-                        </ng-template>
                         <ng-template #option let-option>
                             {{ option.name }}
                         </ng-template>

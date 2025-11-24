@@ -25,12 +25,12 @@ export class AppMenu {
                 items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] }]
             },
             {
-                label: 'Workspace',
+                label: 'UI Components',
                 items: [
-                    { label: 'Peoples', icon: 'pi pi-fw pi-user', routerLink: ['/uikit/table'] },
-                    { label: 'Products', icon: 'pi pi-fw pi-cart-minus', routerLink: ['/uikit/list'] },
-                    { label: 'Files', icon: 'pi pi-fw pi-file', routerLink: ['/uikit/tree'] },
-                    { label: 'Tasks', icon: 'pi pi-fw pi-check-circle', routerLink: ['/uikit/panel'] }
+                    { label: 'Table', icon: 'pi pi-fw pi-table', routerLink: ['/uikit/table'] },
+                    { label: 'List', icon: 'pi pi-fw pi-list', routerLink: ['/uikit/list'] },
+                    { label: 'Tree', icon: 'pi pi-fw pi-share-alt', routerLink: ['/uikit/tree'] },
+                    { label: 'Panel', icon: 'pi pi-fw pi-tablet', routerLink: ['/uikit/panel'] },
                 ]
             },
         ];

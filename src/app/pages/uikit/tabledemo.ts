@@ -45,7 +45,7 @@ interface expandedRows {
         IconFieldModule
     ],
     template: ` <div class="card">
-            <div class="font-semibold text-xl mb-4">Customers</div>
+            <div class="font-semibold text-xl mb-4">Filtering</div>
             <p-table
                 #dt1
                 [value]="customers1"
@@ -152,7 +152,7 @@ interface expandedRows {
         </div>
 
         <div class="card">
-            <div class="font-semibold text-xl mb-4">Colleagues</div>
+            <div class="font-semibold text-xl mb-4">Frozen Columns</div>
             <p-togglebutton [(ngModel)]="balanceFrozen" [onIcon]="'pi pi-lock'" offIcon="pi pi-lock-open" [onLabel]="'Balance'" offLabel="Balance" />
 
             <p-table [value]="customers2" [scrollable]="true" scrollHeight="400px" styleClass="mt-4">
